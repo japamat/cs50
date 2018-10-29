@@ -1,0 +1,15 @@
+notes on proceeding through problem
+
+4.  built init function, found that an array was initialized and tested proper swapping if d is even
+
+5.  after building draw, inserted init code to give myself an array to test printing
+
+6.  building move, decided to abstract things down into a few funtions
+        
+        6.1 in move, we need to do the following things:
+            6.1.a   check that input is valid and find that tile's location in array
+            6.1.b   check that move is legal move (i.e. directly adjacent to blank)
+            6.1.c   swap selected tile with blank
+
+                        
+                        

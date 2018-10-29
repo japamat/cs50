@@ -1,0 +1,70 @@
+WHODUNIT QUESTIONS
+
+1. What’s stdint.h?
+    stdint.h is a header file in the C99 standard library, designed to 
+    make code more portable for programmers by providing a set of typedef
+    integers that specify exact width.
+
+2. What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+    uint8_t, uint32_t, int32_t, uint16_t are all integer types provided by 
+    the stdint.h header file in the C99 library. These integer types have
+    predefined widths, or the number of bits that can be used to store
+    their value.
+
+3. How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+    BYTE = 1 Byte
+    DWORD = 4 Bytes
+    LONG = 4 Bytes
+    WORD = 2 Bytes
+
+4. What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
+    hexadecimal first two bytes of a .bmp: 42 4D
+
+5. What’s the difference between bfSize and biSize?
+    bfSize: number of total bytes in the .bmp file
+    biSize: number of total bytes in the .bmp image, excludes padding 
+    and file headers
+    
+6. What does it mean if biHeight is negative?
+    if biHeight is negative, then an uncompressed bmp image will load from
+    the top left corner, as opposed to from the bottom left corner.
+    
+7. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+    in the BITMAPINFOHEADER, it is biBitCount that specifies the number of
+    bits per pixel (either 1, 4, 8, 16, 24, or 32)
+    
+8. Why might fopen return NULL in lines 24 and 32 of copy.c?
+    line 24: fopen may return NULL if input file cannot be found
+    line 32: fopen may return NULL if the output file cannot be written
+             to the system. The issue could be things such as improper 
+             file name (no \ allowed in name) or the there could be a 
+             permissions issue.
+    
+9. Why is the third argument to fread always 1 in our code?
+    fread has 4 syntax arguments: 
+        A pointer that points to a block of
+        memory of size nmemb bytes, the size in bytes of each element to
+        be read (please note this can be assigned dynamically), nmemb, or the 
+        number of elements to be read, and stream, which points to the specific 
+        file to be read from. nmemb is the thir argument of fread, and is always 
+        1 because there is only one element that we are using that program to read.
+
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+    padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4
+    padding =  (4 - (3 * 3)) % 4) % 4
+    padding =  (4 - (9) % 4) % 4
+    padding =  (4 - (1)) % 4
+    padding =  3 % 4
+    padding =  3
+        3 bytes of padding (aka one column aka size of RGBTRIPLE) are added to the end
+        to ensure that each scanline's width in bytes is divisible by 4
+
+11. What does fseek do?
+    Per the comments, we're using it to skip over padding in a BMP. This function has
+    3 parameters. The first notes which file we are looking at, the second is our 
+    file pointer offset in bytes, and the third is from where in the file we want to
+    start looking.
+
+12. What is SEEK_CUR?
+    SEEK_CUR is what's given as the third paramater for the fseek function, telling fseek 
+    to start from the current position of the file pointer.

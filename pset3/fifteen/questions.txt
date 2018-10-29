@@ -1,0 +1,44 @@
+pset3 - game of fiteen questions.txt
+
+0 - 3:  question answers
+4 - XX: general notes
+
+
+questions answered:
+
+
+0.  The gameboard dimesions need to have equal number of rows and columns, 
+    with at least three rows/columns and no more than 9 rows/columns
+
+1.  The gameboard is comprised of a 2D array of equal rows and columns
+
+2.  The funtion "greet" is called to greet the player and game initialization. 
+    greet calls three functions 
+        
+        2.1 - clear:    clear is decalred above greet. Using escape sequences
+                        for Linux, \033 clears the screen and [2J moves the cursor
+                        to pos. 0, 0.
+                        
+        2.2 - printf:   As given by the cs50.h library, prints the welcome message
+                        to the screen.
+                        
+        2.3 - usleep:   in the unistd.h library, suspends execution of the calling
+                        thread for at least "usec" microseconds.
+    
+3.  Per the documentation, I need to implement the following four (4) functions:
+        
+        3.1 - init:     Initialize the 2D array (of dimensions "d" as given by the
+                        user) to be used as the gameboard.
+                        
+        3.2 - draw:     Prints the current state of the board for the user to see
+                        whenever this function is called. an array only exists in
+                        memory, so we need to make a function that shows the user
+                        the current state of the 2D array (gameboard)
+                        
+        3.3 - move:     Allows user input to control the state of the array.
+                        Effectively "swaps" gameboard tiles with the blank tile.
+                        
+        3.4 - won:      After every move, this function will check the current
+                        state of the gameboard to see if the games has been won,
+                        when the array values are in descending order from [0][0]
+                        to [n-1][n-1]
